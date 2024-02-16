@@ -4,8 +4,12 @@ FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
 WORKDIR /app
 EXPOSE 80
 
+
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
+
+ENV ASPNETCORE_ENVIRONMENT Production
+
 COPY ["BS_FileGenerator/BS_FileGenerator.csproj", "BS_FileGenerator/"]
 RUN dotnet restore "BS_FileGenerator/BS_FileGenerator.csproj"
 COPY . .
