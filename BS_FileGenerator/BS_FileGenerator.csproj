@@ -9,16 +9,12 @@
 
   <ItemGroup>
     <PackageReference Include="Bot.CoreBottomHalf" Version="1.0.21" />
+    <PackageReference Include="BottomHalf.Utilities" Version="1.0.24" />
     <PackageReference Include="Confluent.Kafka" Version="2.3.0" />
-    <PackageReference Include="DocumentFormat.OpenXml" Version="3.0.1" />
-    <PackageReference Include="HtmlToOpenXml.dll" Version="2.4.0" />
-    <PackageReference Include="itext7.pdfhtml" Version="5.0.3" />
+    <PackageReference Include="DinkToPdf" Version="1.0.8" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="6.0.26" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.17.2" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="IService\" />
   </ItemGroup>
 
 </Project>

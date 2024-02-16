@@ -1,11 +1,13 @@
-﻿using DocumentFormat.OpenXml;
+﻿using BS_FileGenerator.IService;
+using DocMaker.ExcelMaker;
+using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Spreadsheet;
 using System.Data;
 
 namespace BS_FileGenerator.Service
 {
-    public class DataTableToExcel
+    public class DataTableToExcel : IDataTableToExcel
     {
         public void ToExcel(DataTable table, string filepath, string sheetName = null)
         {
@@ -16,7 +18,7 @@ namespace BS_FileGenerator.Service
                 WorksheetPart worksheetPart = workbookPart.AddNewPart<WorksheetPart>();
                 SheetData sheetData = new SheetData();
                 worksheetPart.Worksheet = new Worksheet(sheetData);
-                Sheets? sheets = spreadsheetDocument.WorkbookPart!.Workbook.AppendChild(new Sheets());
+                Sheets sheets = spreadsheetDocument.WorkbookPart!.Workbook.AppendChild(new Sheets());
                 Sheet sheet = new Sheet
                 {
                     Id = (StringValue)spreadsheetDocument.WorkbookPart!.GetIdOfPart(worksheetPart),

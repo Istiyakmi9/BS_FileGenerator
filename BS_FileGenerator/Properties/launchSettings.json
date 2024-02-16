@@ -1,6 +1,6 @@
 {
   "profiles": {
-    "BS_FileGenerator": {
+    "BS_FileGenerator-dev": {
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "swagger",
@@ -8,7 +8,17 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
       "dotnetRunMessages": true,
-      "applicationUrl": "http://localhost:5043"
+      "applicationUrl": "http://localhost:5003"
+    },
+    "BS_FileGenerator-prod": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "launchUrl": "swagger",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Production"
+      },
+      "dotnetRunMessages": true,
+      "applicationUrl": "http://localhost:5003"
     },
     "IIS Express": {
       "commandName": "IISExpress",

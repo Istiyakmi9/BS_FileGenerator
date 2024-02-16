@@ -1,47 +1,29 @@
-﻿using DocumentFormat.OpenXml;
-using DocumentFormat.OpenXml.Packaging;
-using DocumentFormat.OpenXml.Wordprocessing;
-using HtmlToOpenXml;
+﻿using BS_FileGenerator.IService;
+using BS_FileGenerator.Models;
+using DocMaker.HtmlToDocx;
 
 namespace BS_FileGenerator.Service
 {
-    public class HtmlToDocxConverter
+    public class HtmlToDocxConverter : IHtmlToDocxConverter
     {
-        public string ToDocx(string html, string destinationFolder, string headerLogoPath)
+        private readonly IHTMLConverter _hTMLConverter;
+
+        public HtmlToDocxConverter(IHTMLConverter hTMLConverter)
+        {
+            _hTMLConverter = hTMLConverter;
+        }
+
+        public async Task<byte[]> ToDocxAsync(RequestModel requestModel)
         {
             string empty = string.Empty;
-            if (!string.IsNullOrEmpty(html))
+            MemoryStream memoryStream = new MemoryStream();
+
+            if (!string.IsNullOrEmpty(requestModel.Content))
             {
-                if (File.Exists(destinationFolder))
-                {
-                    File.Delete(destinationFolder);
-                }
-
-                using MemoryStream memoryStream = new MemoryStream();
-                using (WordprocessingDocument wordprocessingDocument = WordprocessingDocument.Create((Stream)memoryStream, WordprocessingDocumentType.Document))
-                {
-                    MainDocumentPart mainDocumentPart = wordprocessingDocument.MainDocumentPart;
-                    if (mainDocumentPart == null)
-                    {
-                        mainDocumentPart = wordprocessingDocument.AddMainDocumentPart();
-                        new Document(new Body()).Save(mainDocumentPart);
-                    }
-
-                    HtmlConverter htmlConverter = new HtmlConverter(mainDocumentPart);
-                    //if (File.Exists(headerLogoPath))
-                    //{
-                    //    htmlConverter.ProcessHeaderImage(mainDocumentPart, headerLogoPath);
-                    //}
-
-                    htmlConverter.ParseHtml(html);
-                    mainDocumentPart.Document.Save();
-                }
-
-                File.WriteAllBytes(destinationFolder, memoryStream.ToArray());
-                return empty;
+                memoryStream = await _hTMLConverter.ToDocxStreamAsync(requestModel.Content);
             }
 
-            return "Template path not found";
+            return await Task.FromResult(memoryStream.ToArray());
         }
     }
 }
