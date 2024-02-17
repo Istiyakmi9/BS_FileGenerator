@@ -1,17 +1,17 @@
 
-using Bot.CoreBottomHalf.CommonModal.Enums;
 using Bot.CoreBottomHalf.CommonModal;
+using Bot.CoreBottomHalf.CommonModal.Enums;
 using BS_FileGenerator.IService;
 using BS_FileGenerator.Middleware;
 using BS_FileGenerator.Models;
 using BS_FileGenerator.Service;
 using Confluent.Kafka;
+using DinkToPdf;
+using DinkToPdf.Contracts;
+using DocMaker.HtmlToDocx;
 using Microsoft.Extensions.Options;
 using ModalLayer;
 using Newtonsoft.Json.Serialization;
-using DinkToPdf.Contracts;
-using DinkToPdf;
-using DocMaker.HtmlToDocx;
 
 var builder = WebApplication.CreateBuilder(args);
 
