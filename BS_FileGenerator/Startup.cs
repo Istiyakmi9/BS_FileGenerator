@@ -35,7 +35,8 @@ namespace BS_FileGenerator
             try
             {
                 var context = new CustomAssemblyLoadContext();
-                context.LoadUnmanagedLibrary("libwkhtmltox");
+                context.LoadUnmanagedLibrary("libwkhtmltox.so");
+                context.LoadUnmanagedLibrary("libwkhtmltox.dll");
             }
             catch (Exception ex)
             {
@@ -113,7 +114,7 @@ namespace BS_FileGenerator
 
         protected override IntPtr LoadUnmanagedDll(string unmanagedDllName)
         {
-            string path = Path.Combine(Directory.GetCurrentDirectory(), "lib", $"{unmanagedDllName}.dll");
+            string path = Path.Combine(Directory.GetCurrentDirectory(), "lib", $"{unmanagedDllName}");
             return LoadUnmanagedDllFromPath(path);
         }
     }
