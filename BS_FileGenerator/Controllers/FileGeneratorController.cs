@@ -50,7 +50,7 @@ namespace BS_FileGenerator.Controllers
             }
         }
 
-        [HttpPost("generate_pdf_types")]
+        [HttpPost("generate_pdf_bytes")]
         [AllowAnonymous]
         public async Task<byte[]> GenerateHtmlToPdfBytes(RequestModel requestModel)
         {
