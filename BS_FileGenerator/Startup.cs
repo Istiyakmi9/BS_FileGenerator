@@ -32,17 +32,6 @@ namespace BS_FileGenerator
 
         public void ConfiguraServices()
         {
-            try
-            {
-                var context = new CustomAssemblyLoadContext();
-                context.LoadUnmanagedLibrary("libwkhtmltox.so");
-                context.LoadUnmanagedLibrary("libwkhtmltox.dll");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-
             _services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             _services.AddEndpointsApiExplorer();
@@ -102,20 +91,6 @@ namespace BS_FileGenerator
                     .WithExposedHeaders("Authorization");
                 });
             });
-        }
-    }
-
-    public class CustomAssemblyLoadContext : AssemblyLoadContext
-    {
-        public IntPtr LoadUnmanagedLibrary(string unmanagedLibraryName)
-        {
-            return LoadUnmanagedDll(unmanagedLibraryName);
-        }
-
-        protected override IntPtr LoadUnmanagedDll(string unmanagedDllName)
-        {
-            string path = Path.Combine(Directory.GetCurrentDirectory(), "lib", $"{unmanagedDllName}");
-            return LoadUnmanagedDllFromPath(path);
         }
     }
 }
