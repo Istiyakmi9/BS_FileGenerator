@@ -32,9 +32,15 @@ namespace BS_FileGenerator
 
         public void ConfiguraServices()
         {
-            var context = new CustomAssemblyLoadContext();            
-            context.LoadUnmanagedLibrary("libwkhtmltox");
-
+            try
+            {
+                var context = new CustomAssemblyLoadContext();
+                context.LoadUnmanagedLibrary("libwkhtmltox");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
 
             _services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
