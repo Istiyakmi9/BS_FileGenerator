@@ -8,7 +8,7 @@ using ModalLayer.Modal;
 
 namespace BS_FileGenerator.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/generate/[controller]")]
     [ApiController]
     public class FileGeneratorController : BaseController
     {
